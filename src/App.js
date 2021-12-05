@@ -1,24 +1,23 @@
 import logo from './logo.svg';
 import './App.css';
+import ChartData from './Components/ChartData';
+import { createContext, useState } from 'react';
+
+//centralised state
+export const centralState = createContext();
 
 function App() {
+
+  //central state
+  const [store, setStore] = useState([]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <centralState.Provider value={{ store, setStore }}>
+      <h2>This app is made for "Clootrack Software Engineer (Frontend) Hiring Challenge"</h2>
+      <p>To manipulate Chart Data, Change the values in the input field this re-draws the graph simultaneously!</p>
+      <hr/>
+      <ChartData />
+    </centralState.Provider>
   );
 }
 
